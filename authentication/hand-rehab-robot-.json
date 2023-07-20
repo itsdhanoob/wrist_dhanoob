@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "hand-rehab-robot",
+  "private_key_id": "9f1368226558063cc8b9ee35fb40d00a0460b057",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQChaHtGbzkGKqNJ\nhK6lq3B7zYrdwr6wBOn57N/Ar8wuhehAnURhu4fucn1TuusiUqivIHm5qkpsjJDb\n5s22GmB0a/tIFSsySSOC7oVVHeEjVMe5cKxYSPs/t4yXxogbDOFmpurqaOmr8Xgt\n1owiBd8xw1UgiuP8VtzpD+GjNI2PiajxO5fpYJp+Bkmw+bJOCUOxl9t/ntDh60+r\nsj6PMICoyhz4mcS1wBZYgb0q06oPf4VE53s/EMCwJumhRLqKLxtm9pCulyY54CgQ\n3uI32GvwJtWYiMzOdDOjkN3DiaJFZhpVuPr0XuztTNR/sIEBbUCFFGebww1zQRTL\nUN6CUn21AgMBAAECggEAAc4OJNgJ2lqmZ7EBYyf5ePtWX6T1s2uwPx1DbxKE+4pm\nGFGtFrrjw5cwDuKvjiGmmIpWxuxgN5PTa3YXaLKL6UYrPoYOedoG0ntYbj6uvatA\nYX+gs1fVLjdfLdpO1Tiamgzo4khCjRIeu5DjRJHt8HVEXpNwoB0YWTQ8taTyjH9j\nXfQanhlOnhRVJWPr7quELxK+hUhbJyxDoGbQxDclVdNNmRoa549u5oaaOHP2QFQg\njpvH6ydfkH3PBXGOMBSJWcRWu/RT4a68EMrUnFeAKw93EQpTx252W3hyMl45rK6J\njv5Zs5KYx1dU3taJR+q79yZF+YhbKfv077HfYN9QiQKBgQDd+2xYI9yEaTHbd4dP\nM26iRoNoNR3msM2lMN51fPzGu3ecoSu3rSpjIl8plmYXyAJayH1IUHEE77jCGobD\nySEw1GM+uMTuVN9BxxhHFGbCvlAzdOsswNIJH8SYcdMlJ0QV2kV2626rs/3RMv8G\n/FMaoEWy2rOMVNvdjWhP5/mCPQKBgQC6JK5e4KrEkm2dz7f2yEl25F8wlCqD5oeh\n9+MUUlDOmXROs4KE0+3Lid3HasuJjK30IvmwzEDr2RoNB4/2/HcjdVLRTsESUkzp\nmOp2eCr45+kRblH5Ex7uFplVb3ehiC7A7iFW9uWMMUDTjtoza8egh1VBkDtuw+n3\n1uhxssj42QKBgBFzUnEbYJqIKoM2QkzXnjrjkDEA+/jGrWPvE43o5XY6Bo0pnmYy\nFsL0UMbUK/Jypry8Rh0JNdlNfxjDPRTnGtTb3XFw1QpnYaWqIR51XB6zF1r0Ngiu\nn9RXyvyw9ghVreSJ5CwVFf4piCqJ98J005OkRdZpmvPNN/uSwkCF2/eBAoGASpMH\niNtZjwdbAy6E9UmopQk5Wa0Cm3VwQWOehjW0ShEQl7czQyPk0Paa85nFkYXa60RX\n5IzwNYz08uNkuf7LfFk0pMZ4c26lgbDRvkTGcpH2vhUEolUWvywuohvWQdDdak38\n7Wpc7J2O6zMAGDnF8HpHncy7AtValwByf5qxCYECgYEAsS1ZaewYJ3fcwIfKQNX0\nNNz6VH21yTwJJwzVES5dEOVSHKn8BRWNb1kJ20wEyafKotGNIuOdKA70UPHtSn+O\nM2JWTBFlFdh/Y/CSjaVwLr8QqQKQI4mWexdBFZu4ZE/BTOp6b7BRLD1Yy6wMSWlc\nYeH0vI16kMAffGKXxl28CBM=\n-----END PRIVATE KEY-----\n",
+  "client_email": "hand-rehab-robot@hand-rehab-robot.iam.gserviceaccount.com",
+  "client_id": "117949510727003924762",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/hand-rehab-robot%40hand-rehab-robot.iam.gserviceaccount.com"
+}
