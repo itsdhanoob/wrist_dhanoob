@@ -5,6 +5,6 @@ KP = 0.4        # determines the system's response time (small kp = slow respons
 KD = 0          # improves setteling time and stability by damping overshoot ()
 KI = 1          # reduces the steady state error ie velocity_error, postion_error 
 
-current_threshold = 40
+current_threshold = 30
 
 
