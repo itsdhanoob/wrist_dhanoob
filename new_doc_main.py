@@ -260,7 +260,7 @@ def state_1(
     current = controllerDoc.motor.readCurrent()
     if (current) > current_threshold:
         print("Alarm : motor current is exceeded")
-        controllerDoc.motion.setTorque(0)
+        controllerDoc.motor.setTorque(0)
 
     state = 1
 
