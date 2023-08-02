@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="./style.css"/>
+<body>
+    <h1 style ="font-size: 50px; position:absolute; left: 5%; top: 7%; color: #0a2b43;" >Exercise Type:</h1>
+    <form>
+         <button type="button" onclick="showPS()" id="PSB" >Pronation-Supination</button>
+         <button type="button" onclick="showFE()" id="FEB" >Flextion-Extension</button>
+         <button type="button" onclick="showUR()" id="URB">Ulnar-Radial</button>
+    </form>
+    <button class="button" id="conn" onclick="Connect()" style="position: relative; top: 16%; left: 5%; height: 50px;">connect to server</button>
+    <button id="stats" onclick='window.location.href = "stats.html"' style="position: absolute; top: 81.2%; left: 15%; height: 50px; width: 100px;">Statistics</button>
+    <style>
+ 
+        #PS {
+            display:none;
+            height: 323px;
+            width: 300px;
+            position: absolute;
+            bottom: 260px;
+            left: 340px;
+        }
+        #FE {
+            display:none;
+            height: 323px;
+            width: 300px;
+            position: absolute;
+            bottom: 260px;
+            left: 340px;
+        }
+        #UR {
+            display:none;
+            height: 323px;
+            width: 300px;
+            position: absolute;
+            bottom: 260px;
+            left: 340px;
+        }
+    </style>
+    <style>
+        @keyframes glowing {
+        0% {
+          background-color: #ab1515;
+          box-shadow: 0 0 5px #ab1515;
+        }
+        50% {
+          background-color: #dbe2d9;
+          box-shadow: 0 0 20px #dbe2d9;
+        }
+        100% {
+          background-color: #ab1515;
+          box-shadow: 0 0 5px #ab1515;
+        }
+      }
+      .button {
+        animation: glowing 1000ms infinite;
+      }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    .slidecontainer {
+      width: 100%;
+    }
+    
+    .slider {
+      -webkit-appearance: none;
+      width: 40%;
+      height: 20px;
+      position:absolute;
+      left: 55%;
+      border-radius: 5px;
+      background: #ffffff;
+      outline: none;
+      opacity: 0.8;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+    }
+    
+    .slider:hover {
+      opacity: 1;
+    }
+    
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #044caa;
+      cursor: pointer;
+    }
+    
+    .slider::-moz-range-thumb {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #04AA6D;
+      cursor: pointer;
+    }
+    </style>
+    </head>
+    <body>
+        
+    <div class="slidecontainer">
+      <input type="range" min="-100" max="100" value="0" class="slider" id="myRange">
+      <p><span id="demo" style="position: absolute;  left: 55%;" ></span></p>
+    </div>
+    
+    <script>
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("demo");
+    output.innerHTML = slider.value;
+    
+    slider.oninput = function() {
+      output.innerHTML = this.value;
+    }
+    </script>
+    
+
+    <img id="PS" src="lXLk762soEQ2vgnetkurw_Pronation_of_forearm.jpg" alt="P/S image" />
+    <img id="FE" src = "wrist-flexion-and-extension.jpg" alt ="F/E image"/>
+    <img id="UR" src = "ulnar-and-radial-deviation.jpg" alt ="U/R image" />
+<script>
+    function showPS() {
+        document.getElementById('PS')
+                .style.display = "block";
+        document.getElementById('UR')
+                .style.display = "none";
+        document.getElementById('FE')
+                .style.display = "none";
+    }
+    function showFE() {
+        document.getElementById('FE')
+                .style.display = "block";
+        document.getElementById('UR')
+                .style.display = "none";
+        document.getElementById('PS')
+                .style.display = "none";
+    }
+    function showUR() {
+        document.getElementById('UR')
+                .style.display = "block";
+        document.getElementById('PS')
+                .style.display = "none";
+        document.getElementById('FE')
+                .style.display = "none";
+    }
+</script>
+<video width="600" height= "360" style="position: absolute; bottom:30%; left: 55%;" controls>
+    <source src="mov_bbb.mp4" type="video/mp4">
+    Your browser does not support HTML video.
+  </video>
+</body>
+</html>

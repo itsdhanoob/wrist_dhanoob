@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<title>Exercises</title>
+<link rel="stylesheet" href="./style.css" />
+<img src="iMEK-logo_rgb_dt-01.svg" style="min-width: 250px; max-width: 30%; height: auto;">
+
+<body>
+  <div>
+    <button class="basic_button" style="font-size: xx-large; width: 200px; margin: 10px;"
+      onclick="window.location.href = 'addpatient.html'">New patient</button>
+    <p style="font-size: 25px; width: 200px;">List of patients:</p>
+  </div>
+  <div class="flex-container">
+    <ul style="background-color: white;" class="patient-list">
+      <div id="patients" class="flex-container-vertical">
+        <button type="button" class="hover" onclick="openList1()" id="patient">(first name) (last name)</button>
+        <button type="button" class="hover" onclick="openList1()" id="patient">name2</button>
+        <button type="button" class="hover" onclick="openList1()" id="patient">name3</button>
+        <button type="button" class="hover" onclick="openList1()" id="patient">name4</button>
+        <button type="button" class="hover" onclick="openList1()" id="patient">name5</button>
+        <button type="button" class="hover" onclick="openList1()" id="patient">name6</button>
+        <button type="button" class="hover" onclick="openList1()" id="patient">name7</button>
+        <button type="button" class="hover" onclick="openList1()" id="patient">name8</button>
+        <button type="button" class="hover" onclick="openList1()" id="patient">name9</button>
+        <button type="button" class="hover" onclick="openList1()" id="patient">name10</button>
+      </div>
+    </ul>
+    <ul id="l1" class="patient-info">
+      <li>Patient's name:
+        <span id="patient_name" style="font-size: x-large;">(first name) (last name)</span>
+      </li>
+      <li>Maximum CW position/angle:
+        <span id="max_cw_position" style="font-size: x-large;">0</span>
+      </li>
+      <li>Maximum CCW position/angle:
+        <span id="max_ccw_position" style="font-size: x-large;">0</span>
+      </li>
+      <li>Maximum CW velocity:
+        <span id="max_cw_speed" style="font-size: x-large;">0</span>
+        <label for="max_cw_speed" style="font-size: x-large;">rev/min</label>
+      </li>
+      <li>Maximum CCW velocity:
+        <span id="max_ccw_speed" style="font-size: x-large;">0</span>
+        <label for="max_ccw_speed" style="font-size: x-large;">rev/min</label>
+      </li>
+    </ul>
+    <div class="flex-container-vertical">
+      <form>
+        <button type="button" onclick="showPS()" id="PS" class="basic_button">Passive</button>
+        <button type="button" onclick="showAC()" id="AC" class="basic_button">Active</button>
+        <button type="button" onclick="showACR()" id="ACR" class="basic_button">Active resistance</button>
+        <button type="button" onclick="closedata()" id="closebutton" class="red_button">Change Patient</button>
+        <button type="button" onclick="enabledata()" id="stopbutton" class="red_button">Finish</button>
+      </form>
+    </div>
+    <div class="flex-container-vertical" id="passiveDiv" style="display: none">
+      <div>
+        <img style="margin: 10px;" src="http://192.168.1.245:5000/video_feed">
+      </div>
+      <label for="numericalP" style="font-size: x-large;">Position: </label>
+      <span id="numericalP" style="font-size: x-large; margin: 5px;"></span>
+      <form>
+        <input type="range" min="-100" max="100" value="0" class="slider" id="sliderP">
+      </form>
+      <label for="numericalS" style="font-size: x-large;">Speed: </label>
+      <span id="numericalS" style="font-size: x-large; margin: 5px;"></span>
+      <form>
+        <input type="range" min="0" max="100" value="0" class="slider" id="sliderS">
+      </form>
+    </div>
+    <div class="flex-container-vertical" id="activeDiv" style="display: none">
+      <div>
+        <img style="margin: 10px;" src="http://192.168.1.245:5000/video_feed">
+      </div>
+      <form method="get">
+        <div class="div">
+          <label for="current_position" style="font-size: x-large;">Current Position/Angle: </label>
+          <span id="current_position" style="font-size: x-large;">0</span>
+          <label for="current_position" style="font-size: x-large;"></label>
+        </div>
+        <div class="div">
+          <label for="current_position" style="font-size: x-large;">Current Velocity: </label>
+          <span id="current_position" style="font-size: x-large;">0</span>
+          <label for="current_position" style="font-size: x-large;"></label>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
+  <style>
+    #patient {
+      border: none;
+      margin: 4px;
+      font-size: x-large;
+    }
+  </style>
+  <script>
+    var sliderP = document.getElementById("sliderP");
+    var sliderS = document.getElementById("sliderS");
+    var rangeP = document.getElementById("numericalP");
+    var rangeS = document.getElementById("numericalS");
+    var pain = document.getElementById("needle");
+    var patients = document.getElementById("patients");
+    var list = document.getElementById("l1");
+    var passiveDiv = document.getElementById("passiveDiv");
+    var activeDiv = document.getElementById("activeDiv");
+
+    var buttonP = document.getElementById("PS");
+    var buttonA = document.getElementById("AC");
+    var buttonAR = document.getElementById("ACR");
+    var buttonClose = document.getElementById("closebutton");
+    var buttonStop = document.getElementById("stopbutton")
+
+    var patient_name = document.getElementById("patient_name");
+    var max_ccw_position = document.getElementById("max_ccw_position");
+    var max_cw_position = document.getElementById("max_cw_position");
+    var max_ccw_speed = document.getElementById("max_ccw_speed");
+    var max_cw_speed = document.getElementById("max_cw_speed");
+
+    buttonP.style.display = "none";
+    buttonA.style.display = "none";
+    buttonAR.style.display = "none";
+
+    sliderP.oninput = function () {
+      rangeP.innerHTML = this.value;
+      let svalue = sliderP.value
+      console.log(svalue)
+      const request = new XMLHttpRequest()
+      request.open('POST', 'http://192.168.1.245:5000/slider')
+      request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      request.send(svalue);
+    }
+    sliderS.oninput = function () {
+      rangeS.innerHTML = this.value;
+      let svalue = sliderS.value
+      console.log(svalue)
+      const request = new XMLHttpRequest()
+      request.open('POST', 'http://192.168.1.245:5000/speed_slider')
+      request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      request.send(svalue);
+    }
+
+    async function openList1() {
+      if (list.style.display == "none") {
+        list.style.display = "block";
+        buttonP.style.display = "block";
+        buttonA.style.display = "block";
+        buttonAR.style.display = "block";
+        buttonClose.style.display = "block";
+        patients.style.pointerEvents = "none";
+
+        var patient_data;
+        const res = await fetch('Patient_data/Test Test.json')
+        patient_data = await res.json();
+        console.log(patient_data.Start)
+
+        max_ccw_position.innerHTML = patient_data.CCW_Max_Position
+        max_cw_position.innerHTML = patient_data.CW_Max_Position
+        max_ccw_speed.innerHTML = patient_data.CCW_Max_Speed
+        max_cw_speed.innerHTML = patient_data.CW_Max_Speed
+      }
+      else {
+        list.style.display = "none";
+        buttonP.style.display = "none";
+        buttonA.style.display = "none";
+        buttonAR.style.display = "none";
+        buttonClose.style.display = "none";
+      }
+    }
+    async function showAC() {
+      activeDiv.style.display = "block"
+      buttonStop.style.display = "block";
+      buttonClose.style.display = "none";
+      buttonP.disabled = true;
+      buttonP.style.pointerEvents = "none";
+      buttonA.disabled = true;
+      buttonA.style.pointerEvents = "none";
+      buttonAR.disabled = true;
+      buttonAR.style.pointerEvents = "none";
+
+      const active = new XMLHttpRequest();
+      active.open('POST', 'http://192.168.1.245:5000/active');
+      active.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      active.send("Active");
+    }
+    function showPS() {
+      passiveDiv.style.display = "block"
+      rangeP.innerHTML = 0;
+      rangeS.innerHTML = 0;
+      sliderP.value = 0;
+      sliderS.value = 0;
+      buttonStop.style.display = "block";
+      sliderP.style.display = "block";
+      sliderS.style.display = "block";
+      buttonClose.style.display = "none";
+      buttonP.disabled = true;
+      buttonP.style.pointerEvents = "none";
+      buttonA.disabled = true;
+      buttonA.style.pointerEvents = "none";
+      buttonAR.disabled = true;
+      buttonAR.style.pointerEvents = "none";
+
+      const passive = new XMLHttpRequest();
+      passive.open('POST', 'http://192.168.1.245:5000/passive');
+      passive.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      passive.send("Passive");
+    }
+    function enabledata() {
+      buttonP.disabled = false;
+      buttonP.style.pointerEvents = "auto";
+      buttonA.disabled = false;
+      buttonA.style.pointerEvents = "auto";
+      buttonAR.disabled = false;
+      buttonAR.style.pointerEvents = "auto";
+      buttonStop.style.display = "none";
+      buttonClose.style.display = "block";
+      activeDiv.style.display = "none"
+      passiveDiv.style.display = "none"
+
+      const finish = new XMLHttpRequest();
+      finish.open('POST', 'http://192.168.1.245:5000/finish');
+      finish.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      finish.send("Done");
+    }
+    function closedata() {
+      list.style.display = "none";
+      buttonP.style.display = "none";
+      buttonA.style.display = "none";
+      buttonAR.style.display = "none";
+      buttonClose.style.display = "none";
+      patients.style.pointerEvents = "auto";
+
+    }
+    function showACR() {
+    }
+  </script>
+</body>
+
+</html>

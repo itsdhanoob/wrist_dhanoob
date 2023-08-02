@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON to HTML</title>
+</head>
+<body>
+  <input type="file" id="fileInput" accept=".json">
+  <div class="div_index">
+    <button type="button" id ="finish" onclick="save()" class="finish finish1">Finish</button>
+</div>
+  <div id="output"></div>
+
+  <script>
+    // Get the file input element
+    const fileInput = document.getElementById("fileInput");
+    const finish = document.getElementById("finish");
+
+    function save(){
+      if (file){
+        console.log("yep")
+        const reader = new FileReader();
+        reader.readAsText(file);
+        reader.onload = (event) => {
+          try {
+            // Parse the JSON data
+            const data = JSON.parse(event.target.result);
+
+            // Extract and format data
+            const start = data.Start;
+            const ccwMaxPosition = data.CCW_Max_Position;
+            const cwMaxPosition = data.CW_Max_Position;
+
+            const outputText = `
+              Start: ${start}<br>
+              Counter Clockwise Maximum Position Angle: ${ccwMaxPosition}<br>
+              Clockwise Maximum Position Angle: ${cwMaxPosition}
+            `;
+
+            // Display the data on the page
+            document.getElementById("output").innerHTML = outputText;
+          } catch (error) {
+            console.error(error);
+            document.getElementById("output").innerHTML = "Error loading data.";
+          }
+        };
+      }
+    }
+    // Listen for the file input change event
+    fileInput.addEventListener("change", (event) => {
+      const file = event.target.files[0];
+
+      // Check if a file was selected
+      if (file) {
+        // Create a FileReader instance
+        const reader = new FileReader();
+
+        // Read the contents of the file
+        reader.readAsText(file);
+
+        // Handle the load event of the FileReader
+        reader.onload = (event) => {
+          try {
+            // Parse the JSON data
+            const data = JSON.parse(event.target.result);
+
+            // Extract and format data
+            const start = data.Start;
+            const ccwMaxPosition = data.CCW_Max_Position;
+            const cwMaxPosition = data.CW_Max_Position;
+
+            const outputText = `
+              Start: ${start}<br>
+              Counter Clockwise Maximum Position Angle: ${ccwMaxPosition}<br>
+              Clockwise Maximum Position Angle: ${cwMaxPosition}
+            `;
+
+            // Display the data on the page
+            document.getElementById("output").innerHTML = outputText;
+          } catch (error) {
+            console.error(error);
+            document.getElementById("output").innerHTML = "Error loading data.";
+          }
+        };
+      }
+    });
+  </script>
+</body>
+</html>

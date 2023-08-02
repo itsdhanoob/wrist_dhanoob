@@ -1,0 +1,239 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+ol {
+  font-size: x-large;
+  margin: 10px;
+
+}
+
+ul {
+  font-size: x-large;
+  margin: 10px;
+}
+
+li {
+  font-size: x-large;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+h1 {
+  text-align: center;
+  font-size: xx-large;
+  color: #0a2b43;
+  margin: auto;
+}
+
+p {
+  font-size: xx-large;
+  margin: 10px;
+}
+
+.patient-list {
+  font-size: x-large;
+  margin: 10px;
+  list-style-type: none;
+  overflow-y: auto;
+  max-height: 250px;
+  min-width: 150px;
+}
+
+.patient-info {
+  background-color: white;
+  display: none;
+  list-style-type: none;
+  font-size: large;
+  overflow-y: auto;
+  overflow-x: auto;
+  max-height: 250px;
+  min-width: 150px;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.flex-container-vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-container-vertical>div {
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+
+}
+
+.signin {
+  border: none;
+  color: white;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: x-large;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  margin: 10px;
+  -webkit-appearance: none;
+  appearance: none;
+  min-width: 150px;
+  height: 20px;
+  width: 100%;
+  border-radius: 5px;
+  background: #ffffff;
+  outline: none;
+  opacity: 0.8;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #044caa;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #04AA6D;
+  cursor: pointer;
+}
+
+.signin1 {
+  background-color: white;
+  color: black;
+  border: 2px solid #4CAF50;
+}
+
+.signin1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.div_index {
+  display: block;
+  padding: 10px;
+  text-align: center;
+}
+
+.email_label {
+  font-size: x-large;
+  text-align: left;
+}
+
+.email_input {
+  font-size: x-large;
+  text-align: center;
+}
+
+.password_label {
+  font-size: x-large;
+  text-align: left;
+}
+
+.password_input {
+  font-size: x-large;
+  text-align: center;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(180, 238, 209);
+}
+
+.divhover:hover {
+  background-color: hsla(0, 82%, 36%, 0);
+}
+
+.hover {
+  opacity: 1;
+}
+
+.hover:hover {
+  background-color: #979191;
+  color: #333;
+}
+
+.vertical-menu {
+  width: 200px;
+}
+
+.vertical-menu a {
+  background-color: #eee;
+  color: black;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.vertical-menu a:hover {
+  background-color: #ccc;
+}
+
+.vertical-menu a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.div {
+  display: block;
+  margin: 15px;
+}
+
+.patient_info {
+  font-size: xx-large;
+  padding: 10px;
+  text-align: justify;
+  background-color: white;
+}
+
+.basic_button {
+  margin: 10px;
+  height: 50px;
+  width: 100px;
+  font-size: large;
+}
+
+.basic_button:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.red_button {
+  margin: 10px;
+  display: none;
+  height: 50px;
+  width: 100px;
+  font-size: large;
+  background-color: red;
+}
+
+.red_button:hover {
+  background-color: #4CAF50;
+  color: white;
+}

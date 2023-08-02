@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<hmtl>
+<body>
+        <h1> Passing javascriabsdas </h1>
+        <form>
+                <label> Entera asdasd </label>
+                <input type='text' name="username" id='username'><br>
+                <button type="button" onclick='window.location.href = "information.html"'>asdasdasdas</button>
+        </form>
+</body>
+<script>
+        function send(){
+                let userinfo=document.getElementById('username').value
+                console.log(userinfo)
+                const request = new XMLHttpRequest()
+                request.open('POST', '/ProcessUserinfo/${JSON.stringify(userinfo)}')
+                request.send();
+        }
+
+</script>
+
+</html>

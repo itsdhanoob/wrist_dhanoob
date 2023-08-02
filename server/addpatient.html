@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./style.css" />
+    <img src="iMEK-logo_rgb_dt-01.svg" style="min-width: 250px; max-width: 30%; height: auto;">
+    <title> Add Patient </title>
+
+    <body>
+        <div class="flex-container">
+            <div>
+                <h2 style="margin-left: 10px;"> Patient Information</h2>
+                <form accept-charset=utf-8 method="post">
+                    <div class="div">
+                        <label for="first_name" style="font-size: large;" >First Name: </label>
+                        <input id="first_name" style="font-size: large; text-transform: capitalize;" accept-charset=utf-8>
+                    </div>
+                    <div class="div">
+                        <label for="last_name" style="font-size: large;">Last Name: </label>
+                        <input id="last_name" style="font-size: large; text-transform: capitalize;" accept-charset=utf-8>
+                    </div>
+                </form> 
+                <form method="get">
+                    <div class="div">
+                        <label for="max_cw_position" style="font-size: large;">Maximum CW Position/Angle: </label>
+                        <span id="max_cw_position" style="font-size: large;">0</span>
+                        <label for="max_cw_position" style="font-size: large;">°</label>
+                    </div>
+                    <div class="div">
+                        <label for="max_cw_speed" style="font-size: large;">Maximum CW Velocity:</label>
+                        <span id="max_cw_speed" style="font-size: large;">0</span>
+                        <label for="max_cw_speed" style="font-size: large;">rev/min</label>
+                    </div>
+                    <div class="div">
+                        <label for="max_ccw_position" style="font-size: large;">Maximum CCW Position/Angle: </label>
+                        <span id="max_ccw_position" style="font-size: large;">0</span>
+                        <label for="max_ccw_position" style="font-size: large;">°</label>
+                    </div>
+                    <div class="div">
+                        <label for="max_ccw_speed" style="font-size: large;">Maximum CCW Velocity:</label>
+                        <span id="max_ccw_speed" style="font-size: large;">0</span>
+                        <label for="max_ccw_speed" style="font-size: large;">rev/min</label>
+                    </div>
+                    
+                    <div class="div">
+                        <label for="max_torque_position" style="font-size: large;">Maximum Current-Torque WRT Position:</label>
+                        <span id="max_torque_position" style="font-size: large;"></span>
+                    </div>
+                    <div class="div">
+                        <label for="max_torque_velocity" style="font-size: large;">Maximum Current-Torque WRT velocity:</label>
+                        <span id="max_torque_velocity" style="font-size: large;"></span>
+                    </div>
+                </form>
+                <div class="div_index">
+                    <button type="button" id ="start" onclick="record()" class="basic_button">Start</button>
+                </div>
+                <div class="div_index">
+                    <button type="button" id ="finish" onclick="save()" class="basic_button">Save</button>
+                </div>
+                <div class="div_index">
+                    <button type="button" id ="excercises" onclick="window.location.href = 'information.html'" class="basic_button">Start Exercises</button>
+                </div>
+            </div>
+            <div style="margin: 25px;">
+                <img id="vid" src="http://192.168.1.245:5000/video_feed">
+            </div>
+        </div>
+        
+    </body>
+    <script>
+        var start = document.getElementById("start");
+        var finish = document.getElementById("finish"); 
+        var first_name = document.getElementById("first_name");
+        var last_name = document.getElementById("last_name");
+        var max_ccw_position = document.getElementById("max_ccw_position");
+        var max_cw_position = document.getElementById("max_cw_position");
+        var max_ccw_speed= document.getElementById("max_ccw_speed");
+        var max_cw_speed = document.getElementById("max_cw_speed");
+        var excercises = document.getElementById("excercises");
+        var start = document.getElementById("start");
+        var finish = document.getElementById("finish");
+
+        finish.disabled = true;
+        finish.style.pointerEvents = "none";
+
+        var first = capitalize(first_name.value);
+        var last = capitalize(last_name.value);
+        
+        function record() {
+            excercises.disabled = true;
+            excercises.style.pointerEvents = "none";
+            start.disabled = true;
+            start.style.pointerEvents = "none";
+            finish.disabled = false;
+            finish.style.pointerEvents = "auto";
+            
+            let first = capitalize(first_name.value);
+            let last = capitalize(last_name.value);
+            let patientInfo = JSON.stringify({"first_name":first, "last_name":last});
+            console.log(patientInfo);
+            const record_pdata = new XMLHttpRequest();
+            record_pdata.open('POST', 'http://192.168.1.245:5000/patient');
+            record_pdata.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            record_pdata.send(patientInfo);
+            console.log("Recording")
+        }
+        async function save() {
+            first = capitalize(first_name.value);
+            last = capitalize(last_name.value);
+            excercises.disabled = false;
+            excercises.style.pointerEvents = "auto";
+            start.disabled = false;
+            start.style.pointerEvents = "auto";
+            finish.disabled = true;
+            finish.style.pointerEvents = "none";
+
+            const save_pdata = new XMLHttpRequest();
+            save_pdata.open('POST', 'http://192.168.1.245:5000/finish');
+            save_pdata.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            save_pdata.send("Done");
+            console.log("Done Recording")
+            
+            var patient_data;
+            const res = await fetch('Patient_data/'+first+' '+last+'.json')
+            patient_data = await res.json();
+            console.log(patient_data.Start)
+            
+            max_ccw_position.innerHTML = patient_data.CCW_Max_Position
+            max_cw_position.innerHTML = patient_data.CW_Max_Position
+            max_ccw_speed.innerHTML = patient_data.CCW_Max_Speed
+            max_cw_speed.innerHTML = patient_data.CW_Max_Speed
+
+            }
+            function capitalize(s){
+                return s.charAt(0).toUpperCase() + s.slice(1);
+            }
+    </script>
+</html>
