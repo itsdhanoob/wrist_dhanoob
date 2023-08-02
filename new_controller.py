@@ -60,11 +60,9 @@ class Controller:
 
         torque = (1 + self.kf) * (self.kp * position_error + self.kd * velocity_error) + self.kf * remote_torque
 
-
+        # current overload protection
 
         current = self.motor.readCurrent()
-
-
 
         if (current) > con.current_threshold:
 
