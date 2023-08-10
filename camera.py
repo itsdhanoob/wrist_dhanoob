@@ -1,17 +1,25 @@
 import cv2
-import numpy
 
-video = cv2.VideoCapture(0)
+# Open the webcam
+cap = cv2.VideoCapture(0)
 
+# Check if the webcam is successfully opened
+if not cap.isOpened():
+    print("Failed to open webcam.")
+    exit(1)
 
-def video_stream():
-    while True:
-        ret, frame = video.read()
-        if not ret:
-            break;
-        else:
-            ret, buffer = cv2.imencode('.jpeg',frame)
-            frame = buffer.tobytes()
-            yield (b' --frame\r\n' b'Content-type: image/jpeg\r\n\r\n' + frame +b'\r\n')
+# Capture a frame from the webcam
+ret, frame = cap.read()
 
+# Check if the frame is captured successfully
+if not ret:
+    print("Failed to capture frame.")
+    exit(1)
 
+# Display the captured frame
+cv2.imshow("Webcam", frame)
+cv2.waitKey(0)
+
+# Release the webcam
+cap.release()
+cv2.destroyAllWindows()
